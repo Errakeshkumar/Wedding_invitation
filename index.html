@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>शादी का निमंत्रण</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Tiro Devanagari Hindi', serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #4a2900;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 100%;
+            padding: 10px;
+        }
+        
+        .invitation {
+            border: 5px solid #d4a017;
+            display: inline-block;
+            padding: 20px;
+            background: linear-gradient(to bottom, #fff, #f9e4b7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 95%;
+            max-width: 500px;
+            margin: 10px auto;
+            animation: fadeIn 1.5s, glow 2s infinite alternate;
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .invitation::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("images/wed.png") center/cover no-repeat; /* REQUIRED: Subtle wedding-themed background texture image */
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        
+        h1 {
+            color: #b22222;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: bounce 1.5s infinite;
+            margin-bottom: 15px;
+        }
+        
+        .main-title {
+            font-size: 26px;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .main-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #b22222, transparent);
+        }
+        
+        h2 {
+            color: #8b0000;
+            font-size: 22px;
+            animation: fadeInDown 1.5s;
+            margin-top: 15px;
+        }
+        
+        .couple-names {
+            font-size: 24px;
+            color: #a02020;
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            padding: 10px;
+            border-top: 2px dashed #d4a017;
+            border-bottom: 2px dashed #d4a017;
+            margin: 15px 0;
+        }
+        
+        p, li {
+            font-size: 16px;
+            color: #4a2900;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .poem {
+            font-style: italic;
+            color: #6b4226;
+            margin: 20px 0;
+            font-size: 16px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            position: relative;
+            animation: fadeInUp 2s;
+        }
+        
+        .poem::before, .poem::after {
+            content: '"';
+            font-size: 30px;
+            color: #d4a017;
+            position: absolute;
+            opacity: 0.5;
+        }
+        
+        .poem::before {
+            top: -10px;
+            left: 5px;
+        }
+        
+        .poem::after {
+            bottom: -25px;
+            right: 5px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        
+        li {
+            background: linear-gradient(135deg, #d4a017, #b8860b);
+            color: white;
+            padding: 8px 12px;
+            margin: 6px;
+            border-radius: 50px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        li:hover {
+            transform: translateY(-3px);
+        }
+        
+        .input-section {
+            text-align: center;
+            animation: fadeInDown 1.5s;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 95%;
+            max-width: 400px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .input-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("images/wed.png") center/contain no-repeat; /* REQUIRED: Same wedding-themed background texture image */
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        
+        input {
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 2px solid #d4a017;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 280px;
+            outline: none;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+            text-align: center;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        input:focus {
+            border-color: #b22222;
+            box-shadow: 0 0 10px rgba(212, 160, 23, 0.5);
+        }
+        
+        button {
+            margin-top: 10px;
+            padding: 12px 25px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #d4a017, #b8860b);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            animation: scaleUp 1.5s infinite alternate;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
+        }
+        
+        button:hover, button:active {
+            background: linear-gradient(135deg, #b8860b, #d4a017);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .family-info {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .family-info h3 {
+            color: #8b0000;
+            border-bottom: 1px solid #d4a017;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .party-section {
+            margin: 20px 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .party-section h3 {
+            animation: pulse 2s infinite;
+            font-size: 20px;
+        }
+        
+        .floating-decor {
+            position: absolute;
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: -1;
+            display: none;
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes scaleUp {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); }
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(255, 165, 0, 0.7); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .animate__animated {
+            animation-duration: 1.5s;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 300px;
+            margin: 15px auto;
+        }
+        
+        .timeline-item {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            margin: 10px 0;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .timeline-item:active {
+            transform: scale(1.03);
+        }
+        
+        .row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .groom-family, .bride-family {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Additional mobile optimizations */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .main-title {
+                font-size: 32px;
+            }
+            
+            .couple-names {
+                font-size: 28px;
+            }
+            
+            p, li {
+                font-size: 18px;
+            }
+            
+            .poem {
+                font-size: 18px;
+            }
+            
+            .floating-decor {
+                display: block;
+            }
+            
+            .row {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            
+            .groom-family, .bride-family {
+                width: 45%;
+            }
+            
+            .timeline {
+                max-width: 400px;
+            }
+        }
+        
+        /* Optimize for touch */
+        @media (hover: none) {
+            button:hover, li:hover, .timeline-item:hover {
+                transform: none;
+            }
+        }
+        
+        /* Fix for iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            body, html {
+                -webkit-overflow-scrolling: touch;
+                height: 100%;
+            }
+            
+            .input-section, .invitation {
+                -webkit-transform: translateZ(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Decorative elements, visible only on desktop -->
+        
+        <div class="input-section animate__animated animate__zoomIn">
+                <div class="golden-border"></div>
+                <h1 class="main-title">मैरिज इन्विटेशन कार्ड</h1>
+                
+                <div class="invitation-image">
+                    <img src="images/6b71a3153433f28793cfc10d3fae28d9-removebg-preview (1).png" alt="Wedding celebration" class="animate__animated animate__pulse animate__infinite" />
+                </div>
+                
+                <h3 class="couple-names">राकेश <span class="heart">❤️</span> वन्दना</h3>
+                
+                <p class="instruction">हमारी शादी की ख़ुशी में शामिल होने के लिए...</p>
+                
+                <input type="text" id="guestName" placeholder="अपना नाम दर्ज करें" class="animate__animated animate__pulse">
+                
+                <button onclick="showInvitation()" class="animate__animated animate__heartBeat">निमंत्रण देखें</button>
+            </div>
+        </div>
+        
+        <div class="invitation animate__animated animate__fadeIn" id="invitation">
+            <div class="hearts"></div>
+            <h1 class="animate__animated animate__heartBeat">💐 शादी का निमंत्रण 💐</h1>
+            <img src="images/com.png" alt="Wedding decorative element" class="animate__animated animate__pulse animate__infinite" style="max-width: 120px;" /> <!-- REQUIRED: Same wedding rings image used above -->
+            
+            <h2 class="animate__animated animate__fadeInDown">प्रिय <span id="displayName"></span>,</h2>
+            <p class="couple-names animate__animated animate__fadeInUp">राकेश ❤️ वन्दना </p>
+            
+            <p class="animate__animated animate__fadeIn">हमारे विवाह समारोह में आपका सादर आमंत्रण है।</p>
+            
+            <div class="timeline animate__animated animate__fadeInUp">
+                <h3>कार्यक्रम की तिथियाँ:</h3>
+                <div class="timeline-item">📅 23 अप्रैल 2025: तेल पूजा</div>
+                <div class="timeline-item">📅 24 अप्रैल 2025: हल्दी</div>
+                <div class="timeline-item">📅 25 अप्रैल 2025: शादी</div>
+                <div class="timeline-item">📅 26 अप्रैल 2025: विदाई</div>
+            </div>
+            
+            <div class="family-info animate__animated animate__fadeIn">
+                <h3>परिवार</h3>
+                <div class="row">
+                    <div class="groom-family">
+                        <p><strong>दूल्हा:</strong> </p>
+                        <p>चि. राकेश कुमार</p>
+                        <p>सुपौत्र - महन्थ राम</p>
+                        <p>सुपुत्र - श्रीमती ईतराजी एवं श्री भगवानदीन</p>
+                        <p>ग्राम - करनूपुर राजा, पोस्ट - धुसवा, मनकापुर, जिला - गोण्डा</p>
+                    </div>
+                    
+                    <div class="bride-family">
+                        <p><strong>दुल्हन:</strong>
+                            <p>आयु. कु. वन्दना</p>
+                        <p>सुपौत्री - श्री जगराम</p>
+                        <p>सुपुत्री - श्रीमती आरती देवी एवं श्री रंजीत मास्टर (ईश्वर शरण स0अ0)</p>
+                        <p>ग्राम - मुबारकपुर, कहारपुखा, पोस्ट - सरायखास, जिला - बलरामपुर</p>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <p class="poem animate__animated animate__fadeInUp">प्यार के दो फूल खिले हैं, संग बंधन में बंधने वाले,<br>
+            खुशियों की यह सौगात सजी है, आशीर्वाद आपका पाने वाले हैं।</p>
+            
+            <p class="animate__animated animate__fadeIn">आपकी उपस्थिति से हमें अपार खुशी होगी।</p>
+            
+            <img src="images/ca6c24245fcaae97aa486376053bcfce.jpg" alt="Wedding scene" class="animate__animated animate__fadeIn" style="max-width: 160px;" /> <!-- REQUIRED: Traditional Indian wedding ceremony scene image -->
+        </div>
+    </div>
+
+    <script>
+        // Fix for iOS 100vh issue
+        function setHeight() {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+        }
+        
+        window.addEventListener('resize', setHeight);
+        window.addEventListener('orientationchange', setHeight);
+        setHeight();
+
+        function showInvitation() {
+            var name = document.getElementById("guestName").value;
+            if (name.trim() !== "") {
+                document.getElementById("displayName").innerText = name;
+                document.querySelector(".input-section").classList.add("animate__fadeOutUp");
+                
+                setTimeout(() => {
+                    document.querySelector(".input-section").style.display = "none";
+                    document.getElementById("invitation").style.display = "block";
+                    document.getElementById("invitation").scrollIntoView({behavior: "smooth"});
+                    createHearts();
+                    speakInvitation(name);
+                }, 1000);
+            } else {
+                alert("कृपया अपना नाम दर्ज करें!");
+            }
+        }
+
+        function createHearts() {
+            const heartsContainer = document.querySelector('.hearts');
+            heartsContainer.innerHTML = ''; // Clear previous hearts
+            
+            // Reduce number of hearts on mobile
+            const heartCount = window.innerWidth < 768 ? 10 : 20;
+            
+            for (let i = 0; i < heartCount; i++) {
+                createHeart(heartsContainer);
+            }
+        }
+
+        function createHeart(container) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.fontSize = Math.random() * 15 + 8 + 'px';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 100 + '%';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            heart.style.animation = `float ${Math.random() * 4 + 3}s infinite ease-in-out ${Math.random() * 5}s`;
+            container.appendChild(heart);
+        }
+
+        function speakInvitation(name) {
+            // Check if speech synthesis is supported
+            if ('speechSynthesis' in window) {
+                var messages = [
+                `प्रिय ${name}, खुशियों की सौगात लेकर आई है शादी की ये रात, राकेश और वंदना के संग सजने वाला है यह अनुपम साथ। स्नेह से आमंत्रित हैं आप, इस शुभ अवसर पर हमें दें आशीर्वाद।`,
+    `प्रिय ${name}, सात फेरों का है पावन बंधन, प्रेम से जुड़ेंगे दो सुंदर मन। राकेश और वंदना की शादी में, पधारें, बढ़ाएं इस खुशी का चमन।`,
+    `प्रिय ${name}, खुशियों से सजी है ये महफ़िल, प्रेम की नई राह पर बढ़ेंगे दो दिल। राकेश और वंदना के विवाह में, पधारकर इसे बनाएं यादगार महफ़िल।`,
+    `प्रिय ${name}, मंगल ध्वनि से गूंजेगी रात, बंधेंगे बंधन के नए तार। शुभ विवाह में पधारें, बनें हमारी खुशियों के हिस्सेदार।`,
+    `प्रिय ${name}, प्यार का पर्व है, शुभ घड़ी का संदेश है, राकेश और वंदना के विवाह का निमंत्रण विशेष है। आपकी उपस्थिति हमारे लिए हर्ष का विषय है।`,
+    `प्रिय ${name}, बजी शहनाई, आई खुशियों की बहार, राकेश और वंदना का मिलन, बना देगा यादगार। सादर आमंत्रित हैं आप, इस शुभ विवाह संस्कार।`,
+    `प्रिय ${name}, चांदनी रातों में होगी खुशी अपार, संगीत, नृत्य और प्रेम का होगा संचार। राकेश और वंदना के विवाह में पधारकर, बढ़ाएं आनंद और प्यार।`,
+    `प्रिय ${name}, प्रेम का सजीला अवसर है, रिश्तों का नया सफर है। आपके स्नेह का इंतजार है, शुभ विवाह में पधारने का आग्रह है।`,
+    `प्रिय ${name}, साथ जन्मों का निभाने चले हैं दो प्यार भरे दिल, राकेश और वंदना के विवाह में, आपकी उपस्थिति से बढ़ेगी महफ़िल।`,
+    `प्रिय ${name}, बंध रही है नई डोरी, प्रेम और विश्वास की छोरी। राकेश और वंदना के विवाह में पधारें, इस शुभ घड़ी के साक्षी बनें।`,
+    `प्रिय ${name}, सुरीली शहनाइयों की गूंज, खुशियों की है बहार, राकेश और वंदना के पावन बंधन में, शामिल होकर दें अपना प्यार।`,
+    `प्रिय ${name}, इस मंगल बेला में, प्रेम का दीप जलेगा, राकेश और वंदना का जीवन, खुशियों से खिलेगा। सादर आमंत्रण।`,
+    `प्रिय ${name}, पावन हैं ये बंधन के पल, सजेगा प्रेम का नव-आंगन, राकेश और वंदना के विवाह में पधारें, दें शुभाशीष संग अपनापन।`,
+    `प्रिय ${name}, दो दिलों का मिलन, दो परिवारों का संगम, इस शुभ विवाह में आपका स्वागत है, शुभ घड़ी का करें वंदन।`,
+    `प्रिय ${name}, नई जिंदगी की नई शुरुआत, प्रेम की होगी बरसात। राकेश और वंदना के विवाह में पधारें, दें अपने आशीर्वाद।`,
+    `प्रिय ${name}, प्रेम, विश्वास और साथ का यह पर्व, हमारे लिए है अति गर्व। राकेश और वंदना के शुभ विवाह में पधारें, अपनी उपस्थिति से इसे और सुंदर बनाएं।`,
+    `प्रिय ${name}, शादी की यह अनुपम बेला, खुशियों से भरी अलबेली सभा। आपके बिना अधूरी है यह घड़ी, कृपया पधारें, देंगे संग खुशी।`,
+    `प्रिय ${name}, दो दिल, एक वचन, सात फेरे और प्रेम अमर। राकेश और वंदना के पावन विवाह में, आपके आने से खिलेगा यह नगर।`,
+    `प्रिय ${name}, खुशियों की सौगात लिए आई है यह घड़ी, मंगलमय हो यह शुभ घड़ी। राकेश और वंदना के विवाह में पधारें, आशीर्वाद से इसे पूरित करें।`
+                ];
+                
+                var text = messages[Math.floor(Math.random() * messages.length)];
+
+                var speech = new SpeechSynthesisUtterance(text);
+                speech.lang = 'hi-IN';  // Hindi voice
+                speech.pitch = 1;        // Adjust pitch for a different effect
+                speech.rate = 0.9;       // Slow it down for a more dramatic effect
+
+                // Mobile devices sometimes have issues with speech synthesis
+                try {
+                    window.speechSynthesis.speak(speech);
+                } catch (e) {
+                    console.log('Speech synthesis not fully supported');
+                }
+            }
+        }
+        
+        // Handle orientation changes specifically for mobile
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+                if (document.getElementById("invitation").style.display === "block") {
+                    document.getElementById("invitation").scrollIntoView({behavior: "smooth"});
+                }
+            }, 200);
+        });
+        
+        // Fix for double-tap zoom on iOS
+        document.addEventListener('touchstart', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Prevent unnecessary zooming on input focus
+        const metaViewport = document.querySelector('meta[name=viewport]');
+        metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+    </script>
+</body>
+</html>
